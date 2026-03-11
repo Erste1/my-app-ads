@@ -3,602 +3,938 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kronas Game — Нестандартные Android-приложения | Скачать бесплатно</title>
-  <meta name="description" content="Kronas Game — разработчик нестандартных Android-приложений. Квантум: научный калькулятор с частицами и анимациями. Скачать бесплатно в RuStore.">
-  <meta name="keywords" content="Kronas Game, нестандартные android приложения, скачать android приложение, разработчик android Россия, Квантум калькулятор, научный калькулятор android, бесплатные android приложения RuStore, android developer, уникальные мобильные приложения, Kotlin android">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Kronas Game">
-  <meta name="yandex-verification" content="ВСТАВЬТЕ_КОД_ЯНДЕКСА_СЮДА">
-
-  <!-- Open Graph / VK / Telegram -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://erste1.github.io/my-app-ads/">
-  <meta property="og:title" content="Kronas Game — Нестандартные Android-приложения">
-  <meta property="og:description" content="Приложения, которые  будут полезны каждому. Скачать бесплатно в RuStore.">
-  <meta property="og:image" content="https://static.rustore.ru/imgproxy/xvCpQjFJNhcYfAfMyQdSCTED2CYyhJNhnQ_Zzk0-xj8/preset:web_app_icon_62/plain/https://static.rustore.ru/2026/3/10/52/apk/2063700025/content/ICON/a591df5e-b0cd-4701-a4f1-2862076fb07f.png@webp">
-
-  <!-- JSON-LD структурированные данные для Яндекса и Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kronas Game",
-    "url": "https://erste1.github.io/my-app-ads/",
-    "jobTitle": "Android Developer",
-    "description": "Разработчик нестандартных Android-приложений",
-    "sameAs": ["https://www.rustore.ru/catalog/developer/5yw294"]
-  }
-  </script>
-
+  <title>Kronas Game — Android-разработчик</title>
+  <meta name="description" content="Kronas Game — разработчик нестандартных Android-приложений. Скачать бесплатно в RuStore.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #030303;
-      --acid: #CAFF00;
-      --red: #FF2D2D;
-      --white: #F0F0F0;
-      --grey: #1a1a1a;
+      --bg: #06060A;
+      --surface: #0E0E16;
+      --border: rgba(255,255,255,0.07);
+      --accent: #7B6FFF;
+      --accent2: #FF6B6B;
+      --accent3: #00E5B0;
+      --text: #F2F2F5;
+      --muted: rgba(242,242,245,0.4);
+      --card: #0C0C14;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
-      cursor: crosshair;
     }
 
-    .cursor {
-      width: 12px; height: 12px;
-      background: var(--acid);
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      mix-blend-mode: difference;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    body::before {
+    /* ─── NOISE TEXTURE ─── */
+    body::after {
       content: '';
       position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 1000; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.6;
     }
 
-    /* HEADER */
-    header {
+    /* ─── HERO ─── */
+    .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      position: relative; overflow: hidden;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
       padding: 2rem;
     }
 
-    .header-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 50%, #0d1a00 0%, transparent 70%),
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(202,255,0,0.015) 60px, rgba(202,255,0,0.015) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(202,255,0,0.015) 60px, rgba(202,255,0,0.015) 61px);
-      z-index: 0;
-      animation: bgPulse 8s ease-in-out infinite;
+    .hero-orbs {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
     }
-    @keyframes bgPulse { 0%,100%{opacity:1} 50%{opacity:.7} }
-
-    .scan-lines {
-      position: absolute; inset: 0; z-index: 1;
-      background: repeating-linear-gradient(0deg, transparent 0px, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px);
-      pointer-events: none;
-      animation: scanMove 12s linear infinite;
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      animation: drift 20s ease-in-out infinite;
     }
-    @keyframes scanMove { 0%{background-position:0 0} 100%{background-position:0 100vh} }
+    .orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: -100px; right: -100px; animation-delay: -7s; }
+    .orb-3 { width: 300px; height: 300px; background: var(--accent3); top: 50%; left: 60%; animation-delay: -14s; }
 
-    .header-content { position: relative; z-index: 2; text-align: center; }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 40px) scale(0.95); }
+    }
 
-    .label-top {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem; color: var(--acid);
-      letter-spacing: 0.4em; text-transform: uppercase;
+    .hero-content {
+      position: relative; z-index: 1; text-align: center; max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(123,111,255,0.3);
+      background: rgba(123,111,255,0.08);
+      border-radius: 100px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeDown 0.8s ease forwards;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent3);
+      border-radius: 50%;
+      animation: ping 2s ease-in-out infinite;
+    }
+    @keyframes ping {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
       margin-bottom: 1.5rem;
-      opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+      opacity: 0;
     }
-    .label-top::before { content: '[ '; }
-    .label-top::after { content: ' ]'; }
-
-    .main-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 18vw, 16rem);
-      line-height: 0.85; letter-spacing: -0.02em;
-      color: var(--white); position: relative;
-      opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
-    }
-    .main-title .glitch { position: relative; display: inline-block; }
-    .main-title .glitch::before,
-    .main-title .glitch::after {
-      content: attr(data-text);
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    }
-    .main-title .glitch::before {
-      color: var(--red); animation: glitch1 4s infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    }
-    .main-title .glitch::after {
-      color: var(--acid); animation: glitch2 4s infinite;
-      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    }
-    @keyframes glitch1 {
-      0%,92%,100%{transform:translate(0);opacity:0}
-      93%{transform:translate(-4px,2px);opacity:1}
-      94%{transform:translate(4px,-2px);opacity:1}
-      95%{transform:translate(-2px,0);opacity:1}
-      96%{transform:translate(0);opacity:0}
-    }
-    @keyframes glitch2 {
-      0%,94%,100%{transform:translate(0);opacity:0}
-      95%{transform:translate(4px,2px);opacity:1}
-      96%{transform:translate(-4px,-2px);opacity:1}
-      97%{transform:translate(2px,0);opacity:1}
-      98%{transform:translate(0);opacity:0}
+    .hero-title .line1 { display: block; color: var(--text); }
+    .hero-title .line2 {
+      display: block;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .accent-word { color: var(--acid); }
-
-    .sub-headline {
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      font-weight: 300; letter-spacing: 0.15em;
-      text-transform: uppercase; color: rgba(240,240,240,0.5);
-      margin-top: 1.5rem;
-      opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s;
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+      opacity: 0;
     }
-    .sub-headline span { color: var(--acid); font-weight: 700; }
 
-    .header-stats {
-      display: flex; gap: 3rem; margin-top: 3rem;
-      opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s;
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+      opacity: 0;
     }
-    .stat {
+
+    .btn-hero {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 100px;
+      transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-solid {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(123,111,255,0.35);
+    }
+    .btn-solid:hover {
+      background: #9B8FFF;
+      box-shadow: 0 0 50px rgba(123,111,255,0.55);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 4rem; padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s ease forwards 0.8s;
+      opacity: 0;
+    }
+    .hstat {
       text-align: center;
-      border: 1px solid rgba(202,255,0,0.2);
-      padding: 1rem 1.5rem; position: relative;
     }
-    .stat::before {
-      content: ''; position: absolute; top: -1px; left: 10px;
-      width: 30px; height: 2px; background: var(--black);
+    .hstat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--text), var(--muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block; line-height: 1;
     }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--acid); display: block; }
-    .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(240,240,240,0.4); letter-spacing: 0.2em; text-transform: uppercase; }
-
-    .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-      color: rgba(202,255,0,0.5); letter-spacing: 0.3em; text-transform: uppercase;
-      animation: blink 2s ease-in-out infinite; z-index: 2;
-    }
-    .scroll-hint::after {
-      content: ''; display: block; width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(202,255,0,0.5), transparent);
-      margin: 0.5rem auto 0;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-    .corner { position: absolute; width: 40px; height: 40px; z-index: 2; }
-    .corner::before,.corner::after { content: ''; position: absolute; background: var(--acid); }
-    .corner::before { width: 100%; height: 2px; top: 0; left: 0; }
-    .corner::after { width: 2px; height: 100%; top: 0; left: 0; }
-    .corner-tl { top: 2rem; left: 2rem; }
-    .corner-tr { top: 2rem; right: 2rem; transform: scaleX(-1); }
-    .corner-bl { bottom: 2rem; left: 2rem; transform: scaleY(-1); }
-    .corner-br { bottom: 2rem; right: 2rem; transform: scale(-1); }
-
-    /* SECTION */
-    section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-      color: var(--acid); letter-spacing: 0.4em; text-transform: uppercase;
-      margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(202,255,0,0.3), transparent); }
-
-    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; margin-bottom: 3rem; }
-
-    .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
-
-    /* APP CARD */
-    .app-card {
-      background: var(--grey); border: 1px solid rgba(202,255,0,0.1);
-      position: relative; overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .app-card:hover { transform: translateY(-4px); border-color: rgba(202,255,0,0.5); }
-    .app-card:hover .card-glow { opacity: 1; }
-
-    .card-glow {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at top left, rgba(202,255,0,0.08), transparent 60%);
-      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
-    }
-    .card-accent { height: 3px; background: linear-gradient(90deg, var(--acid), transparent); }
-
-    /* SCREENSHOTS — creative layout */
-    .card-screenshots {
-      position: relative; overflow: hidden;
-      background: #080808; height: 280px;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 6px; padding: 12px;
-    }
-
-    .ss-main {
-      grid-row: 1 / 3;
-      position: relative; overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid rgba(202,255,0,0.12);
-      transform: rotate(-1.5deg) translateY(4px);
-      transition: transform 0.3s, border-color 0.3s;
-      z-index: 2;
-    }
-    .ss-main:hover { transform: rotate(0deg) translateY(0px) scale(1.02); border-color: rgba(202,255,0,0.4); }
-
-    .ss-side {
-      position: relative; overflow: hidden;
-      border-radius: 6px;
-      border: 1px solid rgba(202,255,0,0.08);
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .ss-side:first-of-type { transform: rotate(1.5deg) translateX(4px); z-index: 1; }
-    .ss-side:last-of-type  { transform: rotate(-1deg) translateX(6px) translateY(-4px); z-index: 1; }
-    .ss-side:hover { transform: rotate(0deg) translate(0,0) scale(1.03); border-color: rgba(202,255,0,0.35); z-index: 3; }
-
-    .ss-main img, .ss-side img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
+    .hstat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
       display: block;
     }
 
-    /* кислотный оверлей на главном скрине */
-    .ss-main::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(202,255,0,0.06) 0%, transparent 60%);
-      pointer-events: none;
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      color: var(--muted); letter-spacing: 0.2em;
+      text-transform: uppercase; z-index: 1;
+      animation: fadeUp 1s ease forwards 1.2s; opacity: 0;
+    }
+    .scroll-indicator .line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(123,111,255,0.6), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
     }
 
-    /* CARD BODY */
-    .card-body { padding: 1.25rem 1.5rem 1.5rem; position: relative; z-index: 2; }
-
-    .card-header-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
-    .app-icon { width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0; border: 1px solid rgba(202,255,0,0.15); }
-    .card-title-wrap { flex: 1; }
-
-    .card-tag {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-      color: rgba(202,255,0,0.6); letter-spacing: 0.3em; text-transform: uppercase;
-      margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;
-    }
-    .card-tag::before {
-      content: ''; width: 6px; height: 6px; background: var(--acid);
-      display: inline-block; animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
-
-    .card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--white); line-height: 1; }
-
-    .card-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(240,240,240,0.55); font-weight: 300; margin-bottom: 1rem; margin-top: 0.75rem; }
-
-    .card-features { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
-    .feature-tag {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
-      padding: 0.3rem 0.6rem; border: 1px solid rgba(202,255,0,0.2);
-      color: rgba(202,255,0,0.7); letter-spacing: 0.1em; text-transform: uppercase;
-    }
-
-    .card-links { display: flex; gap: 0.75rem; }
-
-    .btn {
-      font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase; padding: 0.6rem 1.2rem;
-      text-decoration: none; transition: all 0.2s;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-primary { background: var(--acid); color: var(--black); }
-    .btn-primary:hover { background: var(--white); }
-    .btn-outline { border: 1px solid rgba(202,255,0,0.3); color: rgba(202,255,0,0.7); }
-    .btn-outline:hover { border-color: var(--acid); color: var(--acid); }
-
-    footer { border-top: 1px solid rgba(202,255,0,0.1); padding: 3rem 2rem; text-align: center; }
-    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--acid); letter-spacing: 0.1em; }
-    .footer-line { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(240,240,240,0.2); letter-spacing: 0.2em; margin-top: 0.75rem; }
-
-    .divider { border: none; border-top: 1px solid rgba(202,255,0,0.08); margin: 0; }
-
-    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ABOUT */
-    .about-section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
+    /* ─── SECTION ─── */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1280px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
     }
-    @media(max-width:768px){ .about-section{ grid-template-columns:1fr; gap:2rem; } }
 
-    .about-stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    .section-header {
+      margin-bottom: 3.5rem;
     }
-    .about-stat-box {
-      border: 1px solid rgba(202,255,0,0.15);
-      padding: 1.25rem;
-      position: relative;
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
     }
-    .about-stat-box::before {
+    .section-eyebrow::before {
       content: '';
-      position: absolute; top: -1px; left: 8px;
-      width: 24px; height: 2px;
-      background: var(--black);
+      width: 24px; height: 1px;
+      background: var(--accent);
     }
-    .about-stat-box .num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.2rem; color: var(--acid);
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
       line-height: 1;
     }
-    .about-stat-box .lbl {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: rgba(240,240,240,0.4);
-      letter-spacing: 0.2em; text-transform: uppercase;
-      margin-top: 0.3rem;
+    .section-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    /* SHARE */
-    .share-bar {
-      display: flex; gap: 0.75rem; flex-wrap: wrap;
-      margin-top: 2rem;
+    /* ─── APPS GRID ─── */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
-    .share-btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase; text-decoration: none;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(202,255,0,0.2);
-      color: rgba(202,255,0,0.6);
+
+    /* ─── APP CARD ─── */
+    .app-card {
+      background: var(--card);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .app-card:hover { background: #10101A; }
+    .app-card:hover .card-overlay { opacity: 1; }
+    .app-card:hover .ss-img { transform: scale(1.03); }
+
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(123,111,255,0.04), transparent);
+      opacity: 0; transition: opacity 0.4s;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* screenshots strip */
+    .card-screens {
+      position: relative;
+      height: 240px;
+      background: #08080F;
+      overflow: hidden;
+      display: flex;
+      gap: 8px;
+      padding: 16px 16px 0;
+      align-items: flex-end;
+    }
+    .card-screens::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--card), transparent);
+      z-index: 2;
+    }
+
+    .ss-wrap {
+      flex: 1;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+      height: 100%;
+      position: relative;
+    }
+    .ss-wrap:first-child { flex: 1.5; }
+
+    .ss-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    /* tag strip across screens */
+    .card-app-tag {
+      position: absolute; top: 14px; right: 14px;
+      z-index: 3;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+    }
+
+    /* card body */
+    .card-body {
+      padding: 1.5rem;
+      position: relative; z-index: 2;
+    }
+
+    .card-top {
+      display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;
+    }
+    .app-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .card-meta { flex: 1; }
+    .card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .card-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card-desc {
+      font-size: 0.9rem; line-height: 1.65;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(242,242,245,0.5);
+    }
+
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 100px;
+      background: rgba(123,111,255,0.15);
+      border: 1px solid rgba(123,111,255,0.25);
+      color: #A99FFF;
       transition: all 0.2s;
-      display: inline-flex; align-items: center; gap: 0.4rem;
     }
-    .share-btn:hover { border-color: var(--acid); color: var(--acid); background: rgba(202,255,0,0.05); }
+    .dl-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(123,111,255,0.4);
+    }
+    .dl-btn svg { width: 14px; height: 14px; }
+
+    .card-store-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .about-text p {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--muted); font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+
+    .about-links {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
+    }
+    .about-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .about-link:hover {
+      border-color: rgba(123,111,255,0.4);
+      color: var(--accent);
+      background: rgba(123,111,255,0.06);
+    }
+
+    .stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .stat-item {
+      padding: 2rem 1.5rem;
+      background: var(--surface);
+      transition: background 0.2s;
+    }
+    .stat-item:hover { background: #0E0E1A; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem; font-weight: 800;
+      line-height: 1;
+      display: block;
+      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-num.colored {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .stat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 0.4rem; display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .footer-line {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .footer-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600; font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.65rem 1.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(123,111,255,0.3);
+      color: var(--accent);
+      transition: all 0.2s;
+    }
+    .footer-cta:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(123,111,255,0.35);
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
     @media (max-width: 640px) {
-      .header-stats { flex-direction: column; gap: 1rem; align-items: center; }
       .apps-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-<header>
-  <div class="header-bg"></div>
-  <div class="scan-lines"></div>
-  <div class="corner corner-tl"></div>
-  <div class="corner corner-tr"></div>
-  <div class="corner corner-bl"></div>
-  <div class="corner corner-br"></div>
-
-  <div class="header-content">
-    <div class="label-top">Android Developer // Нестандартный подход</div>
-    <h1 class="main-title">
-      <span class="glitch" data-text="KRONAS">KRONAS</span><br>
-      <span class="accent-word">.GAME</span>
+  <div class="hero-content">
+    <div class="hero-badge">Android Developer · Russia · 2026</div>
+    <h1 class="hero-title">
+      <span class="line1">KRONAS</span>
+      <span class="line2">GAME</span>
     </h1>
-    <p class="sub-headline">Приложения, которые <span>будут полезны каждому</span></p>
-    <div class="header-stats">
-      <div class="stat"><span class="stat-num">06</span><span class="stat-label">Приложений</span></div>
-      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Идей</span></div>
-      <div class="stat"><span class="stat-num">0</span><span class="stat-label">Шаблонов</span></div>
+    <p class="hero-sub">Приложения, которые выбиваются из общего ряда. Никаких шаблонов — только нестандартные идеи.</p>
+    <div class="hero-cta">
+      <a href="https://www.rustore.ru/catalog/developer/5yw294" class="btn-hero btn-solid" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Все приложения
+      </a>
+      <a href="#apps" class="btn-hero btn-ghost">Смотреть работы →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num">30+</span><span class="hstat-lbl">Приложений</span></div>
+      <div class="hstat"><span class="hstat-num">2026</span><span class="hstat-lbl">Основан</span></div>
+      <div class="hstat"><span class="hstat-num">0</span><span class="hstat-lbl">Шаблонов</span></div>
+      <div class="hstat"><span class="hstat-num">∞</span><span class="hstat-lbl">Идей</span></div>
     </div>
   </div>
-  <div class="scroll-hint">scroll</div>
-</header>
+
+  <div class="scroll-indicator">
+    scroll
+    <div class="line"></div>
+  </div>
+</section>
 
 <hr class="divider">
 
-<section>
-  <div class="section-label reveal">Портфолио</div>
-  <h2 class="section-title reveal">Мои <span style="color:var(--acid)">работы</span></h2>
+<!-- ─── APPS ─── -->
+<section class="section" id="apps">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Портфолио</div>
+    <h2 class="section-title">Мои <em>работы</em></h2>
+  </div>
 
   <div class="apps-grid">
 
-    <!-- ======Чистое Фото ====== -->   
+    <!-- Чистое Фото -->
     <div class="app-card reveal">
-      <div class="card-glow"></div>
-      <div class="card-accent"></div>
-
-      <div class="card-screenshots">
-        <div class="ss-main">
-          <img src="https://static.rustore.ru/imgproxy/0uYfLJsvsnnxHXH6ieGaY35LtfjFpzZKKSoQ2qbJ6Zk/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/5c/apk/2063699624/content/SCREENSHOT/e3f9ba59-62cc-4425-b115-0b6930615b8c.png@webp" alt="скриншот 1">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Приватность</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/0uYfLJsvsnnxHXH6ieGaY35LtfjFpzZKKSoQ2qbJ6Zk/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/5c/apk/2063699624/content/SCREENSHOT/e3f9ba59-62cc-4425-b115-0b6930615b8c.png@webp" alt="Чистое Фото скрин 1">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/4JST9uZxOiRixEOR8ECVqUTVddzQCz8YLbB14KHDPfw/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/90/apk/2063699624/content/SCREENSHOT/18b899dd-e991-40bc-b618-328ed70262d0.png@webp" alt="скриншот 2">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/4JST9uZxOiRixEOR8ECVqUTVddzQCz8YLbB14KHDPfw/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/90/apk/2063699624/content/SCREENSHOT/18b899dd-e991-40bc-b618-328ed70262d0.png@webp" alt="Чистое Фото скрин 2">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/2TflScRY3c03pGld1T3EFdCT3YVGPBGQmZ6nHmIiG1w/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/4c/apk/2063699624/content/SCREENSHOT/9d8e00ca-d00c-4018-be5c-67acea5f4b34.png@webp" alt="скриншот 3">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/2TflScRY3c03pGld1T3EFdCT3YVGPBGQmZ6nHmIiG1w/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/4c/apk/2063699624/content/SCREENSHOT/9d8e00ca-d00c-4018-be5c-67acea5f4b34.png@webp" alt="Чистое Фото скрин 3">
         </div>
       </div>
-
       <div class="card-body">
-        <div class="card-header-row">
-          <img class="app-icon" src="https://static.rustore.ru/imgproxy/ykB28sh_wSt4mlFoL5FcQ-g9EMU_v4H1SnhMb_x-q2k/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/9/20/apk/2063699624/content/ICON/012cbd0d-63cf-4343-89f9-d8697d0228db.png@webp" alt="Квантум">
-          <div class="card-title-wrap">
-            <div class="card-tag">Android · 2026</div>
-            <div class="card-title">Чистое Фото</div>
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/ykB28sh_wSt4mlFoL5FcQ-g9EMU_v4H1SnhMb_x-q2k/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/9/20/apk/2063699624/content/ICON/012cbd0d-63cf-4343-89f9-d8697d0228db.png@webp" alt="Чистое Фото">
+          <div class="card-meta">
+            <div class="card-name">Чистое Фото</div>
+            <div class="card-category">Android · 2026</div>
           </div>
         </div>
-        <div class="card-desc">
-           Любой человек, получивший фото, может извлечь эту информацию.- Чистое Фото помогает удалить эти данные за секунды и защитить вашу приватность.
+        <p class="card-desc">Удаляет EXIF-метаданные из фотографий за секунды. Защитите геолокацию, данные устройства и личную информацию перед отправкой снимков.</p>
+        <div class="card-tags">
+          <span class="tag">Meta теги</span>
+          <span class="tag">Приватность</span>
+          <span class="tag">Фото</span>
+          <span class="tag">Защита</span>
         </div>
-        <div class="card-features">
-          <span class="feature-tag">meta теги</span>
-          <span class="feature-tag">Приватность</span>
-          <span class="feature-tag">фото</span>
-          <span class="feature-tag">Защита</span>
-        </div>
-        <div class="card-links">
-          <a href="https://www.rustore.ru/catalog/app/com.exifcleaner" class="btn btn-primary" target="_blank">▶ Скачать</a>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.exifcleaner" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- ====== КВАНТУМ ====== -->    
+    <!-- Квантум -->
     <div class="app-card reveal">
-      <div class="card-glow"></div>
-      <div class="card-accent"></div>
-
-      <div class="card-screenshots">
-        <div class="ss-main">
-          <img src="https://static.rustore.ru/imgproxy/j1H19oQ58X9Xj_5VG2LzmbWdRqlBKhNgeIP_EPLPtqg/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/40/apk/2063700025/content/SCREENSHOT/dc806ed8-dfac-459b-9d84-be629b06e883.png@webp" alt="скриншот 1">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Калькулятор</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/j1H19oQ58X9Xj_5VG2LzmbWdRqlBKhNgeIP_EPLPtqg/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/40/apk/2063700025/content/SCREENSHOT/dc806ed8-dfac-459b-9d84-be629b06e883.png@webp" alt="Квантум скрин 1">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/DHTvJI3uMvkNBMMKcT2ft_xj9wrZeYv_CFxX07ombnA/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/47/apk/2063700025/content/SCREENSHOT/33573e99-f44e-45a6-9f9c-4af5e4b86cc4.png@webp" alt="скриншот 2">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/DHTvJI3uMvkNBMMKcT2ft_xj9wrZeYv_CFxX07ombnA/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/47/apk/2063700025/content/SCREENSHOT/33573e99-f44e-45a6-9f9c-4af5e4b86cc4.png@webp" alt="Квантум скрин 2">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/wObM7vMCk3GUBoPQkNabq8EB_5Qd8xBzgmGRPJxdW2g/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/zz/apk/2063700025/content/SCREENSHOT/14e75370-60e9-4b1d-9007-5dab0f7735ef.png@webp" alt="скриншот 3">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/wObM7vMCk3GUBoPQkNabq8EB_5Qd8xBzgmGRPJxdW2g/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/zz/apk/2063700025/content/SCREENSHOT/14e75370-60e9-4b1d-9007-5dab0f7735ef.png@webp" alt="Квантум скрин 3">
         </div>
       </div>
-
       <div class="card-body">
-        <div class="card-header-row">
+        <div class="card-top">
           <img class="app-icon" src="https://static.rustore.ru/imgproxy/xvCpQjFJNhcYfAfMyQdSCTED2CYyhJNhnQ_Zzk0-xj8/preset:web_app_icon_62/plain/https://static.rustore.ru/2026/3/10/52/apk/2063700025/content/ICON/a591df5e-b0cd-4701-a4f1-2862076fb07f.png@webp" alt="Квантум">
-          <div class="card-title-wrap">
-            <div class="card-tag">Android · 2026</div>
-            <div class="card-title">Квантум</div>
+          <div class="card-meta">
+            <div class="card-name">Квантум</div>
+            <div class="card-category">Android · 2026</div>
           </div>
         </div>
-        <div class="card-desc">
-          Научный калькулятор с квантовыми эффектами. Анимированные частицы на фоне, цветные всплески при нажатии, научный и базовый режимы. Математика, которую не хочется закрывать.
+        <p class="card-desc">Научный калькулятор с квантовыми эффектами. Анимированные частицы на фоне, цветные всплески при нажатии, научный и базовый режимы.</p>
+        <div class="card-tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Частицы</span>
+          <span class="tag">sin cos tan</span>
+          <span class="tag">Анимации</span>
         </div>
-        <div class="card-features">
-          <span class="feature-tag">Kotlin</span>
-          <span class="feature-tag">Частицы</span>
-          <span class="feature-tag">sin cos tan</span>
-          <span class="feature-tag">Анимации</span>
-        </div>
-        <div class="card-links">
-          <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn btn-primary" target="_blank">▶ Скачать</a>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
         </div>
       </div>
     </div>
-        <!-- ====== Цифровой След ====== -->    
+
+    <!-- Цифровой След -->
     <div class="app-card reveal">
-      <div class="card-glow"></div>
-      <div class="card-accent"></div>
-
-      <div class="card-screenshots">
-        <div class="ss-main">
-          <img src="https://static.rustore.ru/imgproxy/c63VAGwpqHxqgDA8R88XcJ8onwE8inBK_w1b-hzDhBU/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/a5/apk/2063699753/content/SCREENSHOT/6c977f80-1a40-424c-8f9e-acb52770190c.png@webp" alt="скриншот 1">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Безопасность</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/c63VAGwpqHxqgDA8R88XcJ8onwE8inBK_w1b-hzDhBU/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/a5/apk/2063699753/content/SCREENSHOT/6c977f80-1a40-424c-8f9e-acb52770190c.png@webp" alt="Цифровой след скрин 1">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/Jqe8QKF2f_ZVT6BdJOkOSyQ-VseMn1E88uQcFfG4Jrs/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/4f/apk/2063699753/content/SCREENSHOT/53fa674c-087d-4e4c-ab24-e107bacdb669.png@webp" alt="скриншот 2">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/Jqe8QKF2f_ZVT6BdJOkOSyQ-VseMn1E88uQcFfG4Jrs/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/4f/apk/2063699753/content/SCREENSHOT/53fa674c-087d-4e4c-ab24-e107bacdb669.png@webp" alt="Цифровой след скрин 2">
         </div>
-        <div class="ss-side">
-          <img src="https://static.rustore.ru/imgproxy/Q64e5l-9O2tD9F0PZl42HDiEO_Rfv9DrXW5CTOI2ZRc/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/37/apk/2063699753/content/SCREENSHOT/b0176eaa-6897-4144-822e-1f82fc097d8a.png@webp" alt="скриншот 3">
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/Q64e5l-9O2tD9F0PZl42HDiEO_Rfv9DrXW5CTOI2ZRc/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/37/apk/2063699753/content/SCREENSHOT/b0176eaa-6897-4144-822e-1f82fc097d8a.png@webp" alt="Цифровой след скрин 3">
         </div>
       </div>
-
       <div class="card-body">
-        <div class="card-header-row">
-          <img class="app-icon" src="https://static.rustore.ru/imgproxy/LFa7msIQKX7LAmKrZXVWQTP2tHnlAmLGaIrmEWm8rKg/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/9/fa/apk/2063699753/content/ICON/60a57ecd-b6ff-4d8a-be22-77144006cb89.png@webp" alt="Квантум">
-          <div class="card-title-wrap">
-            <div class="card-tag">Android · 2026</div>
-            <div class="card-title">Цифровой След</div>
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/LFa7msIQKX7LAmKrZXVWQTP2tHnlAmLGaIrmEWm8rKg/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/9/fa/apk/2063699753/content/ICON/60a57ecd-b6ff-4d8a-be22-77144006cb89.png@webp" alt="Цифровой След">
+          <div class="card-meta">
+            <div class="card-name">Цифровой След</div>
+            <div class="card-category">Android · 2026</div>
           </div>
         </div>
-        <div class="card-desc">
-          Цифровой След - это бесплатный инструмент для анализа приватности и безопасности вашего Android-устройства. Приложение показывает реальную картину: какие данные собирают установленные у вас программы, куда уходит сетевой трафик и насколько высок общий риск для вашей приватности.
+        <p class="card-desc">Анализ приватности и безопасности Android-устройства. Показывает, какие данные собирают приложения, куда уходит трафик и общий риск приватности.</p>
+        <div class="card-tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Анализ</span>
+          <span class="tag">Трафик</span>
+          <span class="tag">Безопасность</span>
         </div>
-        <div class="card-features">
-          <span class="feature-tag">Kotlin</span>
-          <span class="feature-tag">Анализ</span>
-          <span class="feature-tag">След</span>
-          <span class="feature-tag">Безопасность</span>
-        </div>
-        <div class="card-links">
-          <a href="https://www.rustore.ru/catalog/app/com.digitaltrace.app" class="btn btn-primary" target="_blank">▶ Скачать</a>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.digitaltrace.app" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
         </div>
       </div>
     </div>
-    <hr class="divider">
 
-<!-- ====== О РАЗРАБОТЧИКЕ ====== --> 
-<div class="about-section">
-  <div class="reveal">
-    <div class="section-label">О разработчике</div>
-    <h2 class="section-title">Кто я<br><span style="color:var(--acid)">такой</span></h2>
-    <p style="font-size:1.05rem;line-height:1.7;color:rgba(240,240,240,0.55);font-weight:300;margin-bottom:1.5rem;">
-      Разрабатываю Android-приложения которые выбиваются из общего ряда. Никаких шаблонов, никакого copy-paste дизайна — только то, что раньше не видели. Каждое приложение это эксперимент.
-    </p>
-    <div class="share-bar">
-      <a class="share-btn" href="https://vk.com/share.php?url=https://erste1.github.io/my-app-ads/" target="_blank">⬡ VK</a>
-      <a class="share-btn" href="https://t.me/share/url?url=https://erste1.github.io/my-app-ads/&text=Kronas Game — нестандартные Android-приложения" target="_blank">✈ Telegram</a>
-      <a class="share-btn" href="https://www.rustore.ru/catalog/developer/5yw294" target="_blank">⬡ RuStore</a>
+    <!-- Генератор Кода -->
+    <div class="app-card reveal">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">QR / Утилиты</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/kJzddwpv-b88j7GGOnmTuR6bGi7f76aOudPk9AJqlSk/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/6/3f/apk/2063699298/content/SCREENSHOT/fdb4a7f6-89bb-4076-accf-ede82daf9f08.png@webp" alt="Генератор кода скрин 1">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/GnzP3D7cmjHRurlYE1aMZyOv3T3o06Smg2Zn5qDgJAE/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/6/f8/apk/2063699298/content/SCREENSHOT/f0e28cc2-0564-4a09-bfde-e861a9e5248f.png@webp" alt="Генератор кода скрин 2">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/c_uKHdfOVV32_7Q5bajwMY_E-uD86qmRTwWhTNTvIPI/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/6/50/apk/2063699298/content/SCREENSHOT/0ac976b2-64e6-40c0-b695-75d4aa6113c3.png@webp" alt="Генератор кода скрин 3">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/jAiqpcGkwUdtw8z88g5LEK18h_3Uh9lHt2IVsicwWN8/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/6/2e/apk/2063699298/content/ICON/d158af3d-2c9b-4fc6-b49b-9bdf67d0307d.png@webp" alt="Генератор Кода">
+          <div class="card-meta">
+            <div class="card-name">Генератор Кода</div>
+            <div class="card-category">Android · 2026</div>
+          </div>
+        </div>
+        <p class="card-desc">QRGen — создание и сканирование QR-кодов. Никакой регистрации, никаких лишних разрешений. Просто работает.</p>
+        <div class="card-tags">
+          <span class="tag">Фото</span>
+          <span class="tag">Генератор</span>
+          <span class="tag">QR Код</span>
+          <span class="tag">Сканер</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.qrgen.app" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="about-stat-grid reveal">
-    <div class="about-stat-box">
-      <div class="num">30+</div>
-      <div class="lbl">Приложений<br>в RuStore</div>
+    <!-- Менеджер Батареи -->
+    <div class="app-card reveal">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Мониторинг</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/IRGLMcZEJcKDMrzTYtogsTro0Hdm94pcxkm12wuuMj8/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/10/40/apk/2063698898/content/SCREENSHOT/69a2b64d-8018-4997-baea-179df8e20bb1.png@webp" alt="Менеджер батареи скрин 1">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/BlOCBS5JC06nDL0XoqRccV9YzXgjxMtL4cvnevR3PXg/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/10/3d/apk/2063698898/content/SCREENSHOT/ef2bcece-6630-4d8f-b934-94f3981485b6.png@webp" alt="Менеджер батареи скрин 2">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/XICEY3LNajCxyojr9qaA0HIiB_A6FrXqaDKlHr4N818/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/10/32/apk/2063698898/content/SCREENSHOT/c85e0259-73e0-4a6c-9603-81677ba270bc.png@webp" alt="Менеджер батареи скрин 3">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/lN-9AwlcJ20BEfNTpmBULOsC1qyMrsVi37TJ2Hdaio4/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/4/d9/apk/2063698898/content/ICON/9ead0474-9ea5-44a3-a025-817ad9e61809.png@webp" alt="Менеджер Батареи">
+          <div class="card-meta">
+            <div class="card-name">Менеджер Батареи</div>
+            <div class="card-category">Android · 2026</div>
+          </div>
+        </div>
+        <p class="card-desc">Реальный мониторинг батареи: точный заряд, температура, напряжение, ток потребления — всё считывается с датчиков телефона. Никаких выдуманных цифр.</p>
+        <div class="card-tags">
+          <span class="tag">Мониторинг</span>
+          <span class="tag">Анализ</span>
+          <span class="tag">Заряд</span>
+          <span class="tag">Отчёт</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.battlepower.app" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="about-stat-box">
-      <div class="num">2026</div>
-      <div class="lbl">Год<br>основания</div>
+
+    <!-- Каждую Секунду -->
+    <div class="app-card reveal">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Факты</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/sIORJH4DiW0kDGIHyTY_lZCsSKGYk9if0xcUJDvlyK0/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/14/apk/2063699828/content/SCREENSHOT/7edd4cb5-10b0-4aec-903e-c4211cf119af.png@webp" alt="Каждую секунду скрин 1">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/cqjfUPp0I56qo9u6dRp1bkqSNxDtKjBIhLXpSzusxTs/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/04/apk/2063699828/content/SCREENSHOT/57f5029b-000b-4897-8616-8e3c8975015d.png@webp" alt="Каждую секунду скрин 2">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/Za0MxYBp8nFJf0h9gYRSZ15Zp4zMst8fuL7qL5DHryQ/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/a7/apk/2063699828/content/SCREENSHOT/1de6883a-a720-4ea0-85ca-0e5f29d7a924.png@webp" alt="Каждую секунду скрин 3">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/224TTyC_UnXv9EQAmlLlEWwAn1j8hs2aa5sT3C8-IGg/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/10/55/apk/2063699828/content/ICON/4df62f4a-615a-4e2a-9b09-3bb0e347f92a.png@webp" alt="Каждую Секунду">
+          <div class="card-meta">
+            <div class="card-name">Каждую Секунду</div>
+            <div class="card-category">Android · 2026</div>
+          </div>
+        </div>
+        <p class="card-desc">Каждую секунду на Земле рождается 4 человека, сгорает 40 метеоритов, а Солнце теряет 4 млн тонн массы. Насколько активна наша планета?</p>
+        <div class="card-tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Карточки</span>
+          <span class="tag">Числа</span>
+          <span class="tag">Анимации</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.universe.persecond" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="about-stat-box">
-      <div class="num">0</div>
-      <div class="lbl">Шаблонов<br>использовано</div>
+
+    <!-- Счёт Мастер -->
+    <div class="app-card reveal">
+      <div class="card-overlay"></div>
+      <div class="card-screens">
+        <div class="card-app-tag">Бизнес</div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/iKjc4YBis3KvZ5tkw9SbiNT701zZbxLP6ml5vxTr5xs/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/2/24/apk/2063698471/content/SCREENSHOT/e966cc6f-39bc-425e-8b6b-2241808f909f.png@webp" alt="Счёт Мастер скрин 1">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/4-LmW2oZb5npkU-aThIWK0qZpG--Nw18qgV0tenmJAA/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/2/f6/apk/2063698471/content/SCREENSHOT/8b2cc6f1-c28f-4a3a-8b75-4c8fb442efef.png@webp" alt="Счёт Мастер скрин 2">
+        </div>
+        <div class="ss-wrap">
+          <img class="ss-img" src="https://static.rustore.ru/imgproxy/FOWfVmIYlT4pkN48SIuCuTY9rpRD6yRdZqDRIlADB0s/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/2/27/apk/2063698471/content/SCREENSHOT/d601f6ec-49cc-4c92-b2f4-1e216aa7b7db.png@webp" alt="Счёт Мастер скрин 3">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/IM8VYX1C1lhtPnu9wll0CeStRcdV5DPYWg7MNs_hl0A/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/2/c0/apk/2063698471/content/ICON/07ae0593-805a-446d-9901-31d8c2f2f3d4.png@webp" alt="Счёт Мастер">
+          <div class="card-meta">
+            <div class="card-name">Счёт Мастер</div>
+            <div class="card-category">Android · 2026</div>
+          </div>
+        </div>
+        <p class="card-desc">Для фрилансеров, ИП и самозанятых — быстро выставлять счета и акты без лишней бумажной волокиты.</p>
+        <div class="card-tags">
+          <span class="tag">ИНН</span>
+          <span class="tag">Фриланс</span>
+          <span class="tag">Отчёты</span>
+          <span class="tag">Акты</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-store-label">RuStore</span>
+          <a href="https://www.rustore.ru/catalog/app/com.schetmaster.app" class="dl-btn" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="about-stat-box">
-      <div class="num">∞</div>
-      <div class="lbl">Нестандартных<br>идей</div>
-    </div>
+
   </div>
-</div>
+</section>
 
 <hr class="divider">
-<footer>
-  <div class="footer-brand">Kronas Game</div>
-  <div class="footer-line">© 2026 // Android // Нестандартно // Без шаблонов</div>
-  <div style="margin-top:1rem;">
-    <a class="share-btn" style="display:inline-flex;" href="https://www.rustore.ru/catalog/developer/5yw294" target="_blank">Все приложения в RuStore →</a>
+
+<!-- ─── ABOUT ─── -->
+<section class="section">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-eyebrow">О разработчике</div>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">Кто я<br><em>такой</em></h2>
+      <p>Разрабатываю Android-приложения, которые <strong>выбиваются из общего ряда</strong>. Никаких шаблонов, никакого copy-paste дизайна — только то, чего раньше не видели.</p>
+      <p>Каждое приложение — это эксперимент. Я не делаю «ещё один калькулятор» — я делаю калькулятор с квантовыми частицами.</p>
+      <div class="about-links">
+        <a class="about-link" href="https://www.rustore.ru/catalog/developer/5yw294" target="_blank">⬡ RuStore</a>
+        <a class="about-link" href="https://vk.com/share.php?url=https://erste1.github.io/my-app-ads/" target="_blank">⬡ VK</a>
+        <a class="about-link" href="https://t.me/share/url?url=https://erste1.github.io/my-app-ads/&text=Kronas Game" target="_blank">✈ Telegram</a>
+      </div>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat-item">
+        <span class="stat-num colored">30+</span>
+        <span class="stat-lbl">Приложений<br>в RuStore</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num colored">2026</span>
+        <span class="stat-lbl">Год<br>основания</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">0</span>
+        <span class="stat-lbl">Шаблонов<br>использовано</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">∞</span>
+        <span class="stat-lbl">Нестандартных<br>идей</span>
+      </div>
+    </div>
   </div>
+</section>
+
+<hr class="divider">
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">Kronas Game</div>
+  <div class="footer-line">© 2026 · Android · Нестандартно · Без шаблонов</div>
+  <a href="https://www.rustore.ru/catalog/developer/5yw294" class="footer-cta" target="_blank">
+    Все приложения в RuStore
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
 </footer>
 
 <script>
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX - 6 + 'px';
-    cursor.style.top = e.clientY - 6 + 'px';
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 80);
+        obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-
 </body>
 </html>
