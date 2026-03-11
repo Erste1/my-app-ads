@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DEVIANT.DEV — Нестандартные Android-приложения</title>
+  <title>Kronas Game — Нестандартные Android-приложения</title>
   <meta name="description" content="Разработчик нестандартных Android-приложений. Здесь нет шаблонов — только то, чего вы ещё не видели.">
   <meta name="keywords" content="нестандартные android приложения, разработчик android, уникальные мобильные приложения, android developer russia">
   <meta name="robots" content="index, follow">
@@ -417,158 +417,7 @@
       color: var(--acid);
     }
 
-    /* ============ ADD APP CARD ============ */
-    .add-card {
-      border: 1px dashed rgba(202,255,0,0.2);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      min-height: 300px;
-      cursor: pointer;
-      transition: all 0.3s;
-      background: transparent;
-      position: relative;
-    }
 
-    .add-card:hover {
-      border-color: var(--acid);
-      background: rgba(202,255,0,0.03);
-    }
-
-    .add-card:hover .add-icon { transform: rotate(90deg); color: var(--acid); }
-
-    .add-icon {
-      font-size: 3rem;
-      color: rgba(202,255,0,0.3);
-      transition: all 0.3s;
-      line-height: 1;
-      font-family: 'Bebas Neue', sans-serif;
-    }
-
-    .add-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(202,255,0,0.3);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-top: 1rem;
-      transition: color 0.3s;
-    }
-
-    .add-card:hover .add-label { color: rgba(202,255,0,0.7); }
-
-    /* ============ MODAL ============ */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(3,3,3,0.95);
-      z-index: 500;
-      display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .modal-overlay.open {
-      opacity: 1; pointer-events: all;
-    }
-
-    .modal {
-      background: var(--grey);
-      border: 1px solid rgba(202,255,0,0.3);
-      max-width: 540px; width: 100%;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.3s;
-    }
-
-    .modal-overlay.open .modal {
-      transform: translateY(0);
-    }
-
-    .modal-header {
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(202,255,0,0.15);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .modal-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    .modal-close {
-      background: none; border: none;
-      color: rgba(240,240,240,0.4);
-      font-size: 1.5rem; cursor: pointer;
-      font-family: 'Bebas Neue', sans-serif;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-
-    .modal-close:hover { color: var(--red); }
-
-    .modal-body { padding: 1.5rem; }
-
-    .form-group { margin-bottom: 1.25rem; }
-
-    .form-label {
-      display: block;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: rgba(202,255,0,0.6);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-input, .form-textarea {
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(202,255,0,0.15);
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      padding: 0.75rem 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-      resize: vertical;
-    }
-
-    .form-input:focus, .form-textarea:focus {
-      border-color: rgba(202,255,0,0.5);
-    }
-
-    .form-input::placeholder, .form-textarea::placeholder {
-      color: rgba(240,240,240,0.2);
-    }
-
-    .form-textarea { min-height: 100px; }
-
-    .tags-input-wrap { display: flex; gap: 0.5rem; }
-    .tags-input-wrap .form-input { flex: 1; }
-
-    .tags-preview {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-top: 0.5rem; min-height: 28px;
-    }
-
-    .tag-chip {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      padding: 0.25rem 0.5rem;
-      border: 1px solid rgba(202,255,0,0.3);
-      color: rgba(202,255,0,0.7);
-      cursor: pointer;
-      letter-spacing: 0.1em;
-    }
-
-    .tag-chip:hover { border-color: var(--red); color: var(--red); }
-
-    .modal-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid rgba(202,255,0,0.1);
-      display: flex; justify-content: flex-end; gap: 0.75rem;
-    }
 
     /* ============ FOOTER ============ */
     footer {
@@ -650,7 +499,7 @@
 
     <div class="header-stats">
       <div class="stat">
-        <span class="stat-num" id="appCount">01</span>
+        <span class="stat-num">01</span>
         <span class="stat-label">Приложений</span>
       </div>
       <div class="stat">
@@ -700,64 +549,42 @@
       </div>
     </div>
 
-    <!-- КНОПКА ДОБАВЛЕНИЯ -->
-    <div class="add-card reveal" onclick="openModal()">
-      <div class="add-icon">+</div>
-      <div class="add-label">Добавить приложение</div>
+    <!--
+    ═══════════════════════════════════════════════════════
+    ➕ ЧТОБЫ ДОБАВИТЬ НОВОЕ ПРИЛОЖЕНИЕ — скопируй блок ниже
+    и вставь перед этим комментарием. Замени текст на свой.
+    ═══════════════════════════════════════════════════════
+
+    <div class="app-card reveal">
+      <div class="card-glow"></div>
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-tag">Android · ГОД</div>
+        <div class="card-title">НАЗВАНИЕ ПРИЛОЖЕНИЯ</div>
+        <div class="card-desc">
+          Описание — что делает, в чём фишка.
+        </div>
+        <div class="card-features">
+          <span class="feature-tag">Тег 1</span>
+          <span class="feature-tag">Тег 2</span>
+          <span class="feature-tag">Kotlin</span>
+        </div>
+        <div class="card-links">
+          <a href="ССЫЛКА" class="btn btn-primary" target="_blank">▶ Смотреть</a>
+          <a href="GITHUB" class="btn btn-outline" target="_blank">GitHub →</a>
+        </div>
+      </div>
     </div>
+    -->
 
   </div>
 </section>
 
-<!-- ====== MODAL ====== -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">Новое приложение</div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">Название</label>
-        <input class="form-input" id="f-name" type="text" placeholder="PULSE LOCK">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Описание</label>
-        <textarea class="form-textarea" id="f-desc" placeholder="Что делает приложение? Что в нём нестандартного?"></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Год</label>
-        <input class="form-input" id="f-year" type="text" placeholder="2024">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Ссылка (APK / Play Store)</label>
-        <input class="form-input" id="f-link" type="text" placeholder="https://...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">GitHub</label>
-        <input class="form-input" id="f-github" type="text" placeholder="https://github.com/...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Теги (Enter — добавить)</label>
-        <div class="tags-input-wrap">
-          <input class="form-input" id="f-tag" type="text" placeholder="Kotlin, Jetpack...">
-          <button class="btn btn-outline" onclick="addTag()">+</button>
-        </div>
-        <div class="tags-preview" id="tagsPreview"></div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal()">Отмена</button>
-      <button class="btn btn-primary" onclick="saveApp()">Добавить →</button>
-    </div>
-  </div>
-</div>
-
 <!-- ====== FOOTER ====== -->
 <hr class="divider">
 <footer>
-  <div class="footer-brand">DEVIANT.DEV</div>
-  <div class="footer-line">© 2024 // Android // Нестандартно // Без шаблонов</div>
+  <div class="footer-brand">Kronas Game</div>
+  <div class="footer-line">© 2026 // Android // Нестандартно // Без шаблонов</div>
 </footer>
 
 <script>
@@ -778,96 +605,6 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ---- MODAL ----
-  let tags = [];
-
-  function openModal() {
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.getElementById('f-tag').addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); addTag(); }
-  });
-
-  function addTag() {
-    const input = document.getElementById('f-tag');
-    const val = input.value.trim();
-    if (!val || tags.includes(val)) return;
-    tags.push(val);
-    renderTags();
-    input.value = '';
-  }
-
-  function renderTags() {
-    const preview = document.getElementById('tagsPreview');
-    preview.innerHTML = tags.map((t, i) =>
-      `<span class="tag-chip" onclick="removeTag(${i})" title="Убрать">${t} ✕</span>`
-    ).join('');
-  }
-
-  function removeTag(i) {
-    tags.splice(i, 1);
-    renderTags();
-  }
-
-  function saveApp() {
-    const name = document.getElementById('f-name').value.trim();
-    const desc = document.getElementById('f-desc').value.trim();
-    const year = document.getElementById('f-year').value.trim() || '2024';
-    const link = document.getElementById('f-link').value.trim();
-    const github = document.getElementById('f-github').value.trim();
-
-    if (!name || !desc) {
-      alert('Заполни название и описание');
-      return;
-    }
-
-    const grid = document.getElementById('appsGrid');
-    const addCard = grid.querySelector('.add-card');
-
-    const tagsHtml = tags.map(t => `<span class="feature-tag">${t}</span>`).join('');
-    const linkBtn = link ? `<a href="${link}" class="btn btn-primary" target="_blank">▶ Смотреть</a>` : '';
-    const ghBtn = github ? `<a href="${github}" class="btn btn-outline" target="_blank">GitHub →</a>` : '';
-
-    const card = document.createElement('div');
-    card.className = 'app-card reveal';
-    card.innerHTML = `
-      <div class="card-glow"></div>
-      <div class="card-accent"></div>
-      <div class="card-body">
-        <div class="card-tag">Android · ${year}</div>
-        <div class="card-title">${name.toUpperCase()}</div>
-        <div class="card-desc">${desc}</div>
-        <div class="card-features">${tagsHtml}</div>
-        <div class="card-links">${linkBtn}${ghBtn}</div>
-      </div>
-    `;
-
-    grid.insertBefore(card, addCard);
-    setTimeout(() => { card.classList.add('visible'); observer.observe(card); }, 50);
-
-    // Update counter
-    const count = grid.querySelectorAll('.app-card').length;
-    document.getElementById('appCount').textContent = String(count).padStart(2, '0');
-
-    // Reset
-    tags = [];
-    renderTags();
-    ['f-name','f-desc','f-year','f-link','f-github'].forEach(id => document.getElementById(id).value = '');
-    closeModal();
-  }
-
-  // Close modal on overlay click
-  document.getElementById('modalOverlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeModal();
-  });
 </script>
 
 </body>
