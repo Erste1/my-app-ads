@@ -3,32 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kronas Game — Инновационные приложения</title>
+    <title>Kronas Game — Инновационные механики</title>
     <style>
-        body { font-family: sans-serif; background-color: #0a0a0a; color: #fff; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
-        .container { padding: 40px; border: 1px solid #333; border-radius: 20px; background: #111; max-width: 500px; }
-        h1 { font-size: 2.5rem; background: linear-gradient(to right, #00c6ff, #0072ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        p { color: #888; margin-bottom: 30px; line-height: 1.6; }
-        .app-card { border: 1px solid #222; padding: 15px; border-radius: 12px; margin-top: 10px; background: #161616; }
-        .btn { display: inline-block; padding: 12px 24px; background: #0072ff; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 10px; }
-        .footer { margin-top: 40px; font-size: 0.8rem; color: #444; }
-        .footer a { color: #444; text-decoration: none; }
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Фоновое свечение */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.07) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin: 0;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        /* Сетка приложений */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+
+        .app-card h2 {
+            margin: 0 0 12px 0;
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .app-card p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #444;
+            border-top: 1px solid #111;
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #666;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #00ff88;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Kronas Game</h1>
-        <p>Разработка приложений с уникальным пользовательским опытом и необычными механиками.</p>
-        
-        <div class="app-card">
-            <h3>Квантум</h3>
-            <p>Научный калькулятор нового поколения</p>
-            <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn">Скачать в RuStore</a>
-        </div>
+        <p class="tagline">Переосмысляя привычное через уникальный опыт</p>
 
+        <div class="app-grid">
+            <div class="app-card">
+                <div style="font-size: 0.8rem; color: var(--primary); margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">Scientific Tool</div>
+                <h2>Квантум</h2>
+                <p>Научный калькулятор с необычной механикой частиц и минималистичным дизайном для тех, кто ценит стиль.</p>
+                <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn">Скачать в RuStore</a>
+            </div>
+
+            <div class="app-card" style="border-style: dashed; background: transparent; opacity: 0.5;">
+                <div style="font-size: 0.8rem; color: #555; margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">Next Project</div>
+                <h2>Coming Soon</h2>
+                <p>Мы уже работаем над новым приложением с уникальной механикой. Следите за обновлениями.</p>
+            </div>
         </div>
-    <div class="footer">
-        © 2026 Kronas Game | <a href="app-ads.txt">app-ads.txt</a>
     </div>
+
+    <div class="footer">
+        <p>© 2026 Kronas Game</p>
+        <p><span class="status-dot"></span> <a href="app-ads.txt">Developer Verification (app-ads.txt)</a></p>
+    </div>
+
 </body>
 </html>
