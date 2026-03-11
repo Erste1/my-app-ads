@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kronas Game — Нестандартные Android-приложения</title>
   <meta name="description" content="Разработчик нестандартных Android-приложений. Здесь нет шаблонов — только то, чего вы ещё не видели.">
-  <meta name="keywords" content="нестандартные android приложения, разработчик android, уникальные мобильные приложения, android developer russia">
+  <meta name="keywords" content="нестандартные android приложения, разработчик android, уникальные мобильные приложения, android developer russia, Kronas Game">
   <meta name="robots" content="index, follow">
   <meta name="yandex-verification" content="ВСТАВЬТЕ_КОД_ЯНДЕКСА_СЮДА">
   <meta property="og:title" content="KRONAS.GAME — Нестандартные Android-приложения">
@@ -20,11 +20,9 @@
       --red: #FF2D2D;
       --white: #F0F0F0;
       --grey: #1a1a1a;
-      --grey2: #2d2d2d;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -35,18 +33,15 @@
       cursor: crosshair;
     }
 
-    /* ============ CUSTOM CURSOR ============ */
     .cursor {
       width: 12px; height: 12px;
       background: var(--acid);
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9999;
       mix-blend-mode: difference;
-      transition: transform 0.1s;
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     }
 
-    /* ============ NOISE OVERLAY ============ */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -54,7 +49,7 @@
       pointer-events: none; z-index: 1000; opacity: 0.5;
     }
 
-    /* ============ HEADER ============ */
+    /* HEADER */
     header {
       min-height: 100vh;
       display: flex; flex-direction: column;
@@ -65,191 +60,113 @@
 
     .header-bg {
       position: absolute; inset: 0;
-      background: 
+      background:
         radial-gradient(ellipse 80% 50% at 50% 50%, #0d1a00 0%, transparent 70%),
         repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(202,255,0,0.015) 60px, rgba(202,255,0,0.015) 61px),
         repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(202,255,0,0.015) 60px, rgba(202,255,0,0.015) 61px);
       z-index: 0;
       animation: bgPulse 8s ease-in-out infinite;
     }
-
-    @keyframes bgPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
+    @keyframes bgPulse { 0%,100%{opacity:1} 50%{opacity:.7} }
 
     .scan-lines {
       position: absolute; inset: 0; z-index: 1;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent 0px, transparent 3px,
-        rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px
-      );
+      background: repeating-linear-gradient(0deg, transparent 0px, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px);
       pointer-events: none;
       animation: scanMove 12s linear infinite;
     }
-
-    @keyframes scanMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 100vh; }
-    }
+    @keyframes scanMove { 0%{background-position:0 0} 100%{background-position:0 100vh} }
 
     .header-content { position: relative; z-index: 2; text-align: center; }
 
     .label-top {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--acid);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
+      font-size: 0.75rem; color: var(--acid);
+      letter-spacing: 0.4em; text-transform: uppercase;
       margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.3s;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s;
     }
-
     .label-top::before { content: '[ '; }
     .label-top::after { content: ' ]'; }
 
     .main-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(5rem, 18vw, 16rem);
-      line-height: 0.85;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      position: relative;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.5s;
+      line-height: 0.85; letter-spacing: -0.02em;
+      color: var(--white); position: relative;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
     }
-
-    .main-title .glitch {
-      position: relative;
-      display: inline-block;
-    }
-
+    .main-title .glitch { position: relative; display: inline-block; }
     .main-title .glitch::before,
     .main-title .glitch::after {
       content: attr(data-text);
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     }
-
     .main-title .glitch::before {
-      color: var(--red);
-      animation: glitch1 4s infinite;
+      color: var(--red); animation: glitch1 4s infinite;
       clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
     }
-
     .main-title .glitch::after {
-      color: var(--acid);
-      animation: glitch2 4s infinite;
+      color: var(--acid); animation: glitch2 4s infinite;
       clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
     }
-
     @keyframes glitch1 {
-      0%, 92%, 100% { transform: translate(0); opacity: 0; }
-      93% { transform: translate(-4px, 2px); opacity: 1; }
-      94% { transform: translate(4px, -2px); opacity: 1; }
-      95% { transform: translate(-2px, 0); opacity: 1; }
-      96% { transform: translate(0); opacity: 0; }
+      0%,92%,100%{transform:translate(0);opacity:0}
+      93%{transform:translate(-4px,2px);opacity:1}
+      94%{transform:translate(4px,-2px);opacity:1}
+      95%{transform:translate(-2px,0);opacity:1}
+      96%{transform:translate(0);opacity:0}
     }
-
     @keyframes glitch2 {
-      0%, 94%, 100% { transform: translate(0); opacity: 0; }
-      95% { transform: translate(4px, 2px); opacity: 1; }
-      96% { transform: translate(-4px, -2px); opacity: 1; }
-      97% { transform: translate(2px, 0); opacity: 1; }
-      98% { transform: translate(0); opacity: 0; }
+      0%,94%,100%{transform:translate(0);opacity:0}
+      95%{transform:translate(4px,2px);opacity:1}
+      96%{transform:translate(-4px,-2px);opacity:1}
+      97%{transform:translate(2px,0);opacity:1}
+      98%{transform:translate(0);opacity:0}
     }
 
-    .accent-word {
-      color: var(--acid);
-      -webkit-text-stroke: 0px;
-    }
+    .accent-word { color: var(--acid); }
 
     .sub-headline {
       font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(240,240,240,0.5);
+      font-weight: 300; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(240,240,240,0.5);
       margin-top: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.7s;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.7s;
     }
-
     .sub-headline span { color: var(--acid); font-weight: 700; }
 
     .header-stats {
-      display: flex; gap: 3rem;
-      margin-top: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.9s;
+      display: flex; gap: 3rem; margin-top: 3rem;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s;
     }
-
     .stat {
       text-align: center;
       border: 1px solid rgba(202,255,0,0.2);
-      padding: 1rem 1.5rem;
-      position: relative;
+      padding: 1rem 1.5rem; position: relative;
     }
-
     .stat::before {
-      content: '';
-      position: absolute; top: -1px; left: 10px;
-      width: 30px; height: 2px;
-      background: var(--black);
+      content: ''; position: absolute; top: -1px; left: 10px;
+      width: 30px; height: 2px; background: var(--black);
     }
-
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: var(--acid);
-      display: block;
-    }
-
-    .stat-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: rgba(240,240,240,0.4);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--acid); display: block; }
+    .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(240,240,240,0.4); letter-spacing: 0.2em; text-transform: uppercase; }
 
     .scroll-hint {
-      position: absolute; bottom: 2rem; left: 50%;
-      transform: translateX(-50%);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: rgba(202,255,0,0.5);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      animation: blink 2s ease-in-out infinite;
-      z-index: 2;
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: rgba(202,255,0,0.5); letter-spacing: 0.3em; text-transform: uppercase;
+      animation: blink 2s ease-in-out infinite; z-index: 2;
     }
-
     .scroll-hint::after {
-      content: '';
-      display: block;
-      width: 1px; height: 40px;
+      content: ''; display: block; width: 1px; height: 40px;
       background: linear-gradient(to bottom, rgba(202,255,0,0.5), transparent);
       margin: 0.5rem auto 0;
     }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    /* ============ CORNER DECORATIONS ============ */
-    .corner {
-      position: absolute; width: 40px; height: 40px;
-      z-index: 2;
-    }
-    .corner::before, .corner::after {
-      content: '';
-      position: absolute;
-      background: var(--acid);
-    }
+    .corner { position: absolute; width: 40px; height: 40px; z-index: 2; }
+    .corner::before,.corner::after { content: ''; position: absolute; background: var(--acid); }
     .corner::before { width: 100%; height: 2px; top: 0; left: 0; }
     .corner::after { width: 2px; height: 100%; top: 0; left: 0; }
     .corner-tl { top: 2rem; left: 2rem; }
@@ -257,214 +174,120 @@
     .corner-bl { bottom: 2rem; left: 2rem; transform: scaleY(-1); }
     .corner-br { bottom: 2rem; right: 2rem; transform: scale(-1); }
 
-    /* ============ SECTION ============ */
-    section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    /* SECTION */
+    section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 
     .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--acid);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 1rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: var(--acid); letter-spacing: 0.4em; text-transform: uppercase;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;
     }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, rgba(202,255,0,0.3), transparent); }
 
-    .section-label::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(202,255,0,0.3), transparent);
-    }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; margin-bottom: 3rem; }
 
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1;
-      margin-bottom: 3rem;
-    }
+    .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
 
-    /* ============ APPS GRID ============ */
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* ============ APP CARD ============ */
+    /* APP CARD */
     .app-card {
-      background: var(--grey);
-      border: 1px solid rgba(202,255,0,0.1);
-      position: relative;
-      overflow: hidden;
+      background: var(--grey); border: 1px solid rgba(202,255,0,0.1);
+      position: relative; overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
-      cursor: pointer;
     }
-
-    .app-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(202,255,0,0.5);
-    }
-
-    .app-card:hover .card-glow {
-      opacity: 1;
-    }
+    .app-card:hover { transform: translateY(-4px); border-color: rgba(202,255,0,0.5); }
+    .app-card:hover .card-glow { opacity: 1; }
 
     .card-glow {
       position: absolute; inset: 0;
       background: radial-gradient(ellipse at top left, rgba(202,255,0,0.08), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
+      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
     }
+    .card-accent { height: 3px; background: linear-gradient(90deg, var(--acid), transparent); }
 
-    .card-accent {
-      height: 3px;
-      background: linear-gradient(90deg, var(--acid), transparent);
+    /* SCREENSHOTS */
+    .card-screenshots {
+      position: relative; overflow: hidden;
+      background: #080808; height: 210px;
     }
+    .screenshots-track {
+      display: flex; gap: 8px; padding: 10px 36px 10px 10px;
+      overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none;
+      height: 100%; align-items: center;
+    }
+    .screenshots-track::-webkit-scrollbar { display: none; }
+    .screenshot-img {
+      height: 185px; width: auto; flex-shrink: 0;
+      border-radius: 6px;
+      border: 1px solid rgba(202,255,0,0.1);
+      transition: border-color 0.2s;
+    }
+    .screenshot-img:hover { border-color: rgba(202,255,0,0.4); }
 
-    .card-body { padding: 1.5rem; }
+    .scroll-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(3,3,3,0.85); border: 1px solid rgba(202,255,0,0.2);
+      color: var(--acid); width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; z-index: 3;
+      transition: background 0.2s; user-select: none;
+    }
+    .scroll-arrow:hover { background: rgba(202,255,0,0.15); }
+    .scroll-arrow.left { left: 4px; }
+    .scroll-arrow.right { right: 4px; }
+
+    /* CARD BODY */
+    .card-body { padding: 1.25rem 1.5rem 1.5rem; position: relative; z-index: 2; }
+
+    .card-header-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+    .app-icon { width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0; border: 1px solid rgba(202,255,0,0.15); }
+    .card-title-wrap { flex: 1; }
 
     .card-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: rgba(202,255,0,0.6);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+      color: rgba(202,255,0,0.6); letter-spacing: 0.3em; text-transform: uppercase;
+      margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;
     }
-
     .card-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--acid);
-      display: inline-block;
-      animation: pulse 2s infinite;
+      content: ''; width: 6px; height: 6px; background: var(--acid);
+      display: inline-block; animation: pulse 2s infinite;
     }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.6); }
-    }
+    .card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--white); line-height: 1; }
 
-    .card-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-      color: var(--white);
-    }
+    .card-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(240,240,240,0.55); font-weight: 300; margin-bottom: 1rem; margin-top: 0.75rem; }
 
-    .card-desc {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: rgba(240,240,240,0.55);
-      font-weight: 300;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-features {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-bottom: 1.5rem;
-    }
-
+    .card-features { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
     .feature-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      padding: 0.3rem 0.6rem;
-      border: 1px solid rgba(202,255,0,0.2);
-      color: rgba(202,255,0,0.7);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+      padding: 0.3rem 0.6rem; border: 1px solid rgba(202,255,0,0.2);
+      color: rgba(202,255,0,0.7); letter-spacing: 0.1em; text-transform: uppercase;
     }
 
-    .card-links {
-      display: flex; gap: 0.75rem;
-    }
+    .card-links { display: flex; gap: 0.75rem; }
 
     .btn {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.6rem 1.2rem;
-      text-decoration: none;
-      transition: all 0.2s;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; padding: 0.6rem 1.2rem;
+      text-decoration: none; transition: all 0.2s;
       display: inline-flex; align-items: center; gap: 0.5rem;
     }
+    .btn-primary { background: var(--acid); color: var(--black); }
+    .btn-primary:hover { background: var(--white); }
+    .btn-outline { border: 1px solid rgba(202,255,0,0.3); color: rgba(202,255,0,0.7); }
+    .btn-outline:hover { border-color: var(--acid); color: var(--acid); }
 
-    .btn-primary {
-      background: var(--acid);
-      color: var(--black);
-    }
+    footer { border-top: 1px solid rgba(202,255,0,0.1); padding: 3rem 2rem; text-align: center; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--acid); letter-spacing: 0.1em; }
+    .footer-line { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(240,240,240,0.2); letter-spacing: 0.2em; margin-top: 0.75rem; }
 
-    .btn-primary:hover {
-      background: var(--white);
-    }
+    .divider { border: none; border-top: 1px solid rgba(202,255,0,0.08); margin: 0; }
 
-    .btn-outline {
-      border: 1px solid rgba(202,255,0,0.3);
-      color: rgba(202,255,0,0.7);
-    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
-    .btn-outline:hover {
-      border-color: var(--acid);
-      color: var(--acid);
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-
-
-    /* ============ FOOTER ============ */
-    footer {
-      border-top: 1px solid rgba(202,255,0,0.1);
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .footer-brand {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      color: var(--acid);
-      letter-spacing: 0.1em;
-    }
-
-    .footer-line {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: rgba(240,240,240,0.2);
-      letter-spacing: 0.2em;
-      margin-top: 0.75rem;
-    }
-
-    /* ============ DIVIDER ============ */
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(202,255,0,0.08);
-      margin: 0;
-    }
-
-    /* ============ ANIMATIONS ============ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ============ RESPONSIVE ============ */
     @media (max-width: 640px) {
       .header-stats { flex-direction: column; gap: 1rem; align-items: center; }
       .apps-grid { grid-template-columns: 1fr; }
@@ -475,11 +298,9 @@
 
 <div class="cursor" id="cursor"></div>
 
-<!-- ====== HEADER ====== -->
 <header>
   <div class="header-bg"></div>
   <div class="scan-lines"></div>
-
   <div class="corner corner-tl"></div>
   <div class="corner corner-tr"></div>
   <div class="corner corner-bl"></div>
@@ -487,63 +308,65 @@
 
   <div class="header-content">
     <div class="label-top">Android Developer // Нестандартный подход</div>
-
     <h1 class="main-title">
-      <span class="glitch" data-text="DEVIANT">KRONAS</span><br>
+      <span class="glitch" data-text="KRONAS">KRONAS</span><br>
       <span class="accent-word">.GAME</span>
     </h1>
-
-    <p class="sub-headline">
-      Приложения, которые <span>нарушают правила логики</span>
-    </p>
-
+    <p class="sub-headline">Приложения, которые <span>нарушают правила логики</span></p>
     <div class="header-stats">
-      <div class="stat">
-        <span class="stat-num">01</span>
-        <span class="stat-label">Приложений</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">∞</span>
-        <span class="stat-label">Идей</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">0</span>
-        <span class="stat-label">Шаблонов</span>
-      </div>
+      <div class="stat"><span class="stat-num">01</span><span class="stat-label">Приложений</span></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Идей</span></div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-label">Шаблонов</span></div>
     </div>
   </div>
-
   <div class="scroll-hint">scroll</div>
 </header>
 
 <hr class="divider">
 
-<!-- ====== APPS ====== -->
 <section>
   <div class="section-label reveal">Портфолио</div>
   <h2 class="section-title reveal">Мои <span style="color:var(--acid)">работы</span></h2>
 
-  <div class="apps-grid" id="appsGrid">
+  <div class="apps-grid">
 
-    <!-- ПЕРВОЕ ПРИЛОЖЕНИЕ — ПРИМЕР -->
+    <!-- ====== КВАНТУМ ====== -->
     <div class="app-card reveal">
       <div class="card-glow"></div>
       <div class="card-accent"></div>
+
+      <div class="card-screenshots">
+        <div class="screenshots-track" id="track1">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/j1H19oQ58X9Xj_5VG2LzmbWdRqlBKhNgeIP_EPLPtqg/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/40/apk/2063700025/content/SCREENSHOT/dc806ed8-dfac-459b-9d84-be629b06e883.png@webp" alt="скриншот 1">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/DHTvJI3uMvkNBMMKcT2ft_xj9wrZeYv_CFxX07ombnA/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/47/apk/2063700025/content/SCREENSHOT/33573e99-f44e-45a6-9f9c-4af5e4b86cc4.png@webp" alt="скриншот 2">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/wObM7vMCk3GUBoPQkNabq8EB_5Qd8xBzgmGRPJxdW2g/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/zz/apk/2063700025/content/SCREENSHOT/14e75370-60e9-4b1d-9007-5dab0f7735ef.png@webp" alt="скриншот 3">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/p5jYRLWnrjXCvoHum1NbRU677G2-_OuFQHS4NZJajGY/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/9a/apk/2063700025/content/SCREENSHOT/61566bbb-7ea9-475f-8acc-52c9d03e3177.png@webp" alt="скриншот 4">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/30Qe2A6Aq4n4uFtoKPQXooUrgLgHjVb9z0-a0zsE4ik/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/47/apk/2063700025/content/SCREENSHOT/d0ac5075-c6a4-444b-bdfe-1b751f1de668.png@webp" alt="скриншот 5">
+          <img class="screenshot-img" src="https://static.rustore.ru/imgproxy/CjV33x2B6OavVq_yVlR6bz_eJhNmuqW-kQCiSocYrOc/preset:web_scr_prt_162/plain/https://static.rustore.ru/2026/3/10/40/apk/2063700025/content/SCREENSHOT/67ef1589-7aa4-4cb9-91ff-67ff1405b7a5.png@webp" alt="скриншот 6">
+        </div>
+        <div class="scroll-arrow left" onclick="scrollTrack('track1',-200)">‹</div>
+        <div class="scroll-arrow right" onclick="scrollTrack('track1',200)">›</div>
+      </div>
+
       <div class="card-body">
-        <div class="card-tag">Android · 2026</div>
-        <div class="card-title">Квантум</div>
+        <div class="card-header-row">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/xvCpQjFJNhcYfAfMyQdSCTED2CYyhJNhnQ_Zzk0-xj8/preset:web_app_icon_62/plain/https://static.rustore.ru/2026/3/10/52/apk/2063700025/content/ICON/a591df5e-b0cd-4701-a4f1-2862076fb07f.png@webp" alt="Квантум">
+          <div class="card-title-wrap">
+            <div class="card-tag">Android · 2026</div>
+            <div class="card-title">Квантум</div>
+          </div>
+        </div>
         <div class="card-desc">
-• Все математические функции (sin, cos, tan, log, √, x²)
-• Минималистичный чёрный интерфейс
+          Научный калькулятор с квантовыми эффектами. Анимированные частицы на фоне, цветные всплески при нажатии, научный и базовый режимы. Математика, которую не хочется закрывать.
         </div>
         <div class="card-features">
-          <span class="feature-tag">-</span>
-          <span class="feature-tag">-</span>
           <span class="feature-tag">Kotlin</span>
-          <span class="feature-tag">-</span>
+          <span class="feature-tag">Частицы</span>
+          <span class="feature-tag">sin cos tan</span>
+          <span class="feature-tag">Анимации</span>
         </div>
         <div class="card-links">
-          <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn btn-primary">▶ Скачать</a
+          <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn btn-primary" target="_blank">▶ Скачать</a>
         </div>
       </div>
     </div>
@@ -557,20 +380,29 @@
     <div class="app-card reveal">
       <div class="card-glow"></div>
       <div class="card-accent"></div>
-      <div class="card-body">
-        <div class="card-tag">Android · ГОД</div>
-        <div class="card-title">НАЗВАНИЕ ПРИЛОЖЕНИЯ</div>
-        <div class="card-desc">
-          Описание — что делает, в чём фишка.
+
+      <div class="card-screenshots">
+        <div class="screenshots-track" id="trackN">
+          <img class="screenshot-img" src="ССЫЛКА_СКРИНШОТА_ИЗ_RUSTORE" alt="скриншот">
         </div>
+        <div class="scroll-arrow left" onclick="scrollTrack('trackN',-200)">‹</div>
+        <div class="scroll-arrow right" onclick="scrollTrack('trackN',200)">›</div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-header-row">
+          <img class="app-icon" src="ССЫЛКА_ИКОНКИ_ИЗ_RUSTORE" alt="иконка">
+          <div class="card-title-wrap">
+            <div class="card-tag">Android · ГОД</div>
+            <div class="card-title">НАЗВАНИЕ</div>
+          </div>
+        </div>
+        <div class="card-desc">Описание приложения.</div>
         <div class="card-features">
-          <span class="feature-tag">Тег 1</span>
-          <span class="feature-tag">Тег 2</span>
-          <span class="feature-tag">Kotlin</span>
+          <span class="feature-tag">Тег</span>
         </div>
         <div class="card-links">
-          <a href="ССЫЛКА" class="btn btn-primary" target="_blank">▶ Смотреть</a>
-          <a href="GITHUB" class="btn btn-outline" target="_blank">GitHub →</a>
+          <a href="ССЫЛКА_RUSTORE" class="btn btn-primary" target="_blank">▶ Скачать</a>
         </div>
       </div>
     </div>
@@ -579,7 +411,6 @@
   </div>
 </section>
 
-<!-- ====== FOOTER ====== -->
 <hr class="divider">
 <footer>
   <div class="footer-brand">Kronas Game</div>
@@ -587,14 +418,12 @@
 </footer>
 
 <script>
-  // ---- CURSOR ----
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX - 6 + 'px';
     cursor.style.top = e.clientY - 6 + 'px';
   });
 
-  // ---- SCROLL REVEAL ----
   const observer = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -602,8 +431,11 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function scrollTrack(id, amount) {
+    document.getElementById(id).scrollBy({ left: amount, behavior: 'smooth' });
+  }
 </script>
 
 </body>
