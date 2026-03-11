@@ -3,14 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kronas Game — Нестандартные Android-приложения</title>
-  <meta name="description" content="Разработчик нестандартных Android-приложений. Здесь нет шаблонов — только то, чего вы ещё не видели.">
-  <meta name="keywords" content="нестандартные android приложения, разработчик android, уникальные мобильные приложения, android developer russia, Kronas Game">
+  <title>Kronas Game — Нестандартные Android-приложения | Скачать бесплатно</title>
+  <meta name="description" content="Kronas Game — разработчик нестандартных Android-приложений. Квантум: научный калькулятор с частицами и анимациями. Скачать бесплатно в RuStore.">
+  <meta name="keywords" content="Kronas Game, нестандартные android приложения, скачать android приложение, разработчик android Россия, Квантум калькулятор, научный калькулятор android, бесплатные android приложения RuStore, android developer, уникальные мобильные приложения, Kotlin android">
   <meta name="robots" content="index, follow">
+  <meta name="author" content="Kronas Game">
   <meta name="yandex-verification" content="ВСТАВЬТЕ_КОД_ЯНДЕКСА_СЮДА">
-  <meta property="og:title" content="KRONAS.GAME — Нестандартные Android-приложения">
-  <meta property="og:description" content="Разработчик нестандартных Android-приложений. Здесь нет шаблонов.">
+
+  <!-- Open Graph / VK / Telegram -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://erste1.github.io/my-app-ads/">
+  <meta property="og:title" content="Kronas Game — Нестандартные Android-приложения">
+  <meta property="og:description" content="Приложения, которые нарушают правила логики. Скачать бесплатно в RuStore.">
+  <meta property="og:image" content="https://static.rustore.ru/imgproxy/xvCpQjFJNhcYfAfMyQdSCTED2CYyhJNhnQ_Zzk0-xj8/preset:web_app_icon_62/plain/https://static.rustore.ru/2026/3/10/52/apk/2063700025/content/ICON/a591df5e-b0cd-4701-a4f1-2862076fb07f.png@webp">
+
+  <!-- JSON-LD структурированные данные для Яндекса и Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kronas Game",
+    "url": "https://erste1.github.io/my-app-ads/",
+    "jobTitle": "Android Developer",
+    "description": "Разработчик нестандартных Android-приложений",
+    "sameAs": ["https://www.rustore.ru/catalog/developer/5yw294"]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -302,6 +321,62 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ABOUT */
+    .about-section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media(max-width:768px){ .about-section{ grid-template-columns:1fr; gap:2rem; } }
+
+    .about-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .about-stat-box {
+      border: 1px solid rgba(202,255,0,0.15);
+      padding: 1.25rem;
+      position: relative;
+    }
+    .about-stat-box::before {
+      content: '';
+      position: absolute; top: -1px; left: 8px;
+      width: 24px; height: 2px;
+      background: var(--black);
+    }
+    .about-stat-box .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem; color: var(--acid);
+      line-height: 1;
+    }
+    .about-stat-box .lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; color: rgba(240,240,240,0.4);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* SHARE */
+    .share-bar {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .share-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(202,255,0,0.2);
+      color: rgba(202,255,0,0.6);
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .share-btn:hover { border-color: var(--acid); color: var(--acid); background: rgba(202,255,0,0.05); }
     @media (max-width: 640px) {
       .header-stats { flex-direction: column; gap: 1rem; align-items: center; }
       .apps-grid { grid-template-columns: 1fr; }
@@ -384,50 +459,93 @@
       </div>
     </div>
 
-    <!--
-    ═══════════════════════════════════════════════════════
-    ➕ ЧТОБЫ ДОБАВИТЬ НОВОЕ ПРИЛОЖЕНИЕ — скопируй блок ниже
-    и вставь перед этим комментарием. Замени текст на свой.
-    ═══════════════════════════════════════════════════════
-
+    <!-- ====== КАЖДУЮ СЕКУНДУ  ====== -->
     <div class="app-card reveal">
       <div class="card-glow"></div>
       <div class="card-accent"></div>
 
       <div class="card-screenshots">
-        <div class="screenshots-track" id="trackN">
-          <img class="screenshot-img" src="ССЫЛКА_СКРИНШОТА_ИЗ_RUSTORE" alt="скриншот">
+        <div class="ss-main">
+          <img src="https://static.rustore.ru/imgproxy/sIORJH4DiW0kDGIHyTY_lZCsSKGYk9if0xcUJDvlyK0/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/14/apk/2063699828/content/SCREENSHOT/7edd4cb5-10b0-4aec-903e-c4211cf119af.png@webp" alt="скриншот 1">
         </div>
-        <div class="scroll-arrow left" onclick="scrollTrack('trackN',-200)">‹</div>
-        <div class="scroll-arrow right" onclick="scrollTrack('trackN',200)">›</div>
+        <div class="ss-side">
+          <img src="https://static.rustore.ru/imgproxy/cqjfUPp0I56qo9u6dRp1bkqSNxDtKjBIhLXpSzusxTs/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/04/apk/2063699828/content/SCREENSHOT/57f5029b-000b-4897-8616-8e3c8975015d.png@webp" alt="скриншот 2">
+        </div>
+        <div class="ss-side">
+          <img src="https://static.rustore.ru/imgproxy/Za0MxYBp8nFJf0h9gYRSZ15Zp4zMst8fuL7qL5DHryQ/preset:web_scr_prt_384/plain/https://static.rustore.ru/2026/3/9/a7/apk/2063699828/content/SCREENSHOT/1de6883a-a720-4ea0-85ca-0e5f29d7a924.png@webp" alt="скриншот 3">
+        </div>
       </div>
 
       <div class="card-body">
         <div class="card-header-row">
-          <img class="app-icon" src="ССЫЛКА_ИКОНКИ_ИЗ_RUSTORE" alt="иконка">
+          <img class="app-icon" src="https://static.rustore.ru/imgproxy/224TTyC_UnXv9EQAmlLlEWwAn1j8hs2aa5sT3C8-IGg/preset:web_app_icon_160/plain/https://static.rustore.ru/2026/3/10/55/apk/2063699828/content/ICON/4df62f4a-615a-4e2a-9b09-3bb0e347f92a.png@webp" alt="Квантум">
           <div class="card-title-wrap">
-            <div class="card-tag">Android · ГОД</div>
-            <div class="card-title">НАЗВАНИЕ</div>
+            <div class="card-tag">Android · 2026</div>
+            <div class="card-title">Каждую Секунду</div>
           </div>
         </div>
-        <div class="card-desc">Описание приложения.</div>
+        <div class="card-desc">
+         Каждую секунду на Земле рождается 4 человека, сгорает 40 метеоритов, выпивается 29 000 чашек кофе, а Солнце теряет 4 миллиона тонн массы. Ты даже не догадывался, насколько активна наша планета!
+        </div>
         <div class="card-features">
-          <span class="feature-tag">Тег</span>
+          <span class="feature-tag">Kotlin</span>
+          <span class="feature-tag">Карточки</span>
+          <span class="feature-tag">Числа</span>
+          <span class="feature-tag">Анимации</span>
         </div>
         <div class="card-links">
-          <a href="ССЫЛКА_RUSTORE" class="btn btn-primary" target="_blank">▶ Скачать</a>
+          <a href="https://www.rustore.ru/catalog/app/com.universe.persecond" class="btn btn-primary" target="_blank">▶ Скачать</a>
         </div>
       </div>
     </div>
-    -->
 
   </div>
 </section>
 
 <hr class="divider">
+
+<!-- ====== О РАЗРАБОТЧИКЕ ====== -->
+<div class="about-section">
+  <div class="reveal">
+    <div class="section-label">О разработчике</div>
+    <h2 class="section-title">Кто я<br><span style="color:var(--acid)">такой</span></h2>
+    <p style="font-size:1.05rem;line-height:1.7;color:rgba(240,240,240,0.55);font-weight:300;margin-bottom:1.5rem;">
+      Разрабатываю Android-приложения которые выбиваются из общего ряда. Никаких шаблонов, никакого copy-paste дизайна — только то, что раньше не видели. Каждое приложение это эксперимент.
+    </p>
+    <div class="share-bar">
+      <a class="share-btn" href="https://vk.com/share.php?url=https://erste1.github.io/my-app-ads/" target="_blank">⬡ VK</a>
+      <a class="share-btn" href="https://t.me/share/url?url=https://erste1.github.io/my-app-ads/&text=Kronas Game — нестандартные Android-приложения" target="_blank">✈ Telegram</a>
+      <a class="share-btn" href="https://www.rustore.ru/catalog/developer/5yw294" target="_blank">⬡ RuStore</a>
+    </div>
+  </div>
+
+  <div class="about-stat-grid reveal">
+    <div class="about-stat-box">
+      <div class="num">30+</div>
+      <div class="lbl">Приложений<br>в RuStore</div>
+    </div>
+    <div class="about-stat-box">
+      <div class="num">2026</div>
+      <div class="lbl">Год<br>основания</div>
+    </div>
+    <div class="about-stat-box">
+      <div class="num">0</div>
+      <div class="lbl">Шаблонов<br>использовано</div>
+    </div>
+    <div class="about-stat-box">
+      <div class="num">∞</div>
+      <div class="lbl">Нестандартных<br>идей</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
 <footer>
   <div class="footer-brand">Kronas Game</div>
   <div class="footer-line">© 2026 // Android // Нестандартно // Без шаблонов</div>
+  <div style="margin-top:1rem;">
+    <a class="share-btn" style="display:inline-flex;" href="https://www.rustore.ru/catalog/developer/5yw294" target="_blank">Все приложения в RuStore →</a>
+  </div>
 </footer>
 
 <script>
