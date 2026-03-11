@@ -3,207 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kronas Game — Экосистема уникальных решений</title>
+    <title>KRONAS | Minimal Mechanics</title>
     <style>
-        :root {
-            --accent: #00f2ff;
-            --accent-two: #7000ff;
-            --bg-dark: #020202;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;900&family=Inter:wght@200;400&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--bg-dark);
-            color: #fff;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* КРЕАТИВНАЯ ШАПКА: "ИСЧЕЗАЮЩИЙ ЗАГОЛОВОК" */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Анимированный фон */
-        .bg-glow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(112, 0, 255, 0.15) 0%, transparent 70%);
-            filter: blur(80px);
-            z-index: -1;
-            animation: pulse 8s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
-        }
-
-        .container {
-            max-width: 1000px;
-            width: 90%;
-            padding: 100px 20px;
+            justify-content: center;
             text-align: center;
+            perspective: 1000px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
-            margin: 0;
+            font-family: 'Cinzel', serif; /* Элегантный антикварный шрифт */
+            font-size: clamp(4rem, 15vw, 10rem);
             font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(to right, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: 20px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            transition: 1s ease;
+            cursor: default;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: #666;
-            margin-top: 15px;
-            margin-bottom: 80px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero h1:hover {
+            -webkit-text-stroke: 1px rgba(255,255,255,1);
+            letter-spacing: 30px;
+            filter: blur(0px);
         }
 
-        /* Сетка */
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            justify-content: center;
-        }
-
-        /* КАРТОЧКА ПРИЛОЖЕНИЯ */
-        .app-card {
-            position: relative;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 40px;
-            text-align: left;
-            backdrop-filter: blur(20px);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            overflow: hidden;
-        }
-
-        .app-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), transparent);
-            opacity: 0;
-            transition: 0.5s;
-        }
-
-        .app-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(0, 242, 255, 0.4);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-        }
-
-        .app-card:hover::before { opacity: 1; }
-
-        .category {
-            font-size: 0.7rem;
+        .hero-desc {
+            margin-top: 20px;
+            font-weight: 200;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: #444;
+        }
+
+        /* КОНТЕНТ: ЭФФЕКТ ЭКСПОЗИЦИИ */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .app-block {
+            border-top: 1px solid #1a1a1a;
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            transition: 0.6s;
+        }
+
+        .app-block:hover {
+            border-top-color: #fff;
+        }
+
+        .app-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .app-info .type {
+            color: #555;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
             display: block;
         }
 
-        .app-card h2 {
-            font-size: 2rem;
-            margin: 0 0 15px 0;
-            font-weight: 700;
+        .app-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #888;
+            max-width: 450px;
         }
 
-        .app-card p {
-            color: #999;
-            line-height: 1.7;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .btn-action {
-            display: inline-flex;
-            align-items: center;
-            padding: 14px 30px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            border-radius: 16px;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .btn-action:hover {
-            background: var(--accent);
-            transform: translateX(5px);
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 60px 20px;
-            width: 100%;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            background: rgba(0,0,0,0.3);
-        }
-
-        .footer-link {
-            color: #444;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-
-        .footer-link:hover { color: var(--accent); }
-
-        .glow-dot {
-            width: 6px; height: 6px;
-            background: var(--accent);
+        .view-link {
             display: inline-block;
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 0 10px var(--accent);
+            margin-top: 40px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .view-link:hover {
+            letter-spacing: 3px;
+            color: #888;
+            border-bottom-color: transparent;
+        }
+
+        /* ФУТЕР ДЛЯ ЯНДЕКСА */
+        footer {
+            padding: 100px 20px;
+            text-align: center;
+            opacity: 0.3;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        footer a { color: #fff; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .app-block { grid-template-columns: 1fr; }
+            .hero h1 { letter-spacing: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-
-    <div class="container">
-        <header class="hero">
-            <h1>Kronas Game</h1>
-            <p>От криптографической защиты до захватывающих развлечений. Мы создаем софт с нестандартной логикой и живой анимацией.</p>
-        </header>
-
-        <div class="app-grid">
-            
-            <div class="app-card">
-                <span class="category">Scientific & Animated</span>
-                <h2>Квантум</h2>
-                <p>Математический движок с визуализацией частиц. Сочетание высокой точности вычислений и уникальной механики взаимодействия.</p>
-                <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="btn-action">Запустить в RuStore →</a>
-            </div>
-            </div>
+    <div class="hero">
+        <h1>KRONAS</h1>
+        <div class="hero-desc">Experimental Software Workshop</div>
     </div>
 
-    <footer>
-        <p style="margin-bottom: 10px; color: #555;">© 2026 Kronas Game. Lab of unusual mechanics.</p>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-            <a href="app-ads.txt" class="footer-link"><span class="glow-dot"></span>Developer ID Verified</a>
+    <div class="content">
+
+        <div class="app-block">
+            <div class="app-info">
+                <span class="type">01 / Scientific Motion</span>
+                <h2>Квантум</h2>
+            </div>
+            <div class="app-details">
+                <p class="app-description">
+                    Математический инструмент, скрывающий в себе физическую симуляцию. 
+                    Мы превратили скучные вычисления в визуальный опыт, где каждое число имеет вес и инерцию.
+                </p>
+                <a href="https://www.rustore.ru/catalog/app/com.quantum.calculator" class="view-link">OPEN PROJECT →</a>
+            </div>
         </div>
+        </div>
+
+    <footer>
+        © 2026 KRONAS LABS — <a href="app-ads.txt">AUTHORIZED DEVELOPER</a>
     </footer>
 
 </body>
